@@ -39,7 +39,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "rancraftpenguins", name = "Rancraft Penguins", version = "1.6.2o")
+@Mod(modid = "rancraftpenguins", name = "Rancraft Penguins", version = "1.6.4o")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {
 		"RanCraftExt", "RanCraftAL", "RanCraftFD", "RanCraftFRS", "RanCraftFRSR" }, packetHandler = RCPacketHandler.class)
 public class RanCraftPenguins {
