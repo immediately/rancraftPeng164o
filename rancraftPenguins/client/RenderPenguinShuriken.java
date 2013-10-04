@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.EntityArrow;
 //import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -106,7 +107,7 @@ public class RenderPenguinShuriken extends Render
         return skinShur;
     }*/
 
-    protected ResourceLocation func_110775_a(Entity par1Entity)
+    protected ResourceLocation getShurikenTextures(EntityPenguinShuriken par1EntityShuriken)
     {
         return skinShur;
     }
@@ -122,9 +123,11 @@ public class RenderPenguinShuriken extends Render
         this.renderPenguinShuriken((EntityPenguinShuriken)par1Entity, par2, par4, par6, par8, par9);
     }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    {
+        return this.getShurikenTextures((EntityPenguinShuriken)par1Entity);
+    }
 }
