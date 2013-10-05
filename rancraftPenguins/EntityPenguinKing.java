@@ -119,10 +119,12 @@ public class EntityPenguinKing extends EntityPenguin
         return 0.4F;
     }
 
+/*  Not needed here. This function in EntityPenguin.java will set moveSpeed from this file correctly
     public void applyEntityAttributes()
     {
-        super.applyEntityAttributes(moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
+            super.applyEntityAttributes((float) moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
     }
+*/
 
     /**
      * Overrides the version many levels up (in EntityLiving)

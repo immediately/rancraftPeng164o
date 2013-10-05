@@ -13,9 +13,9 @@ public class EntityAISwimmingPeng extends EntityAIBase
     private double xTarget;
     private double yTarget;
     private double zTarget;
-    private float speed;
+    private double speed;
 
-    public EntityAISwimmingPeng(EntityLiving par1EntityLiving, float moveSpeed)
+    public EntityAISwimmingPeng(EntityLiving par1EntityLiving, double moveSpeed)
     {
         this.theEntity = par1EntityLiving;
         this.setMutexBits(4);

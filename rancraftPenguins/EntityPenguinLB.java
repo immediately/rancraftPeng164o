@@ -98,10 +98,12 @@ public class EntityPenguinLB extends EntityPenguin
         return 0.4F;
     }
 
+/*  Not needed here. This function in EntityPenguin.java will set moveSpeed from this file correctly
     public void applyEntityAttributes()
     {
-        super.applyEntityAttributes(moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
+            super.applyEntityAttributes((float) moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
     }
+*/
 
     /**
      * Returns the item ID for the item the mob drops on death.

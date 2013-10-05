@@ -17,6 +17,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -28,14 +30,14 @@ public class EntityPenguinAfr extends EntityPenguin
     float healthQuartile1 = (float)(MAXHEALTHTAME * 0.25) + 1;
     float healthQuartile2 = (float)(MAXHEALTHTAME * 0.50) + 1;
     float healthQuartile3 = (float)(MAXHEALTHTAME * 0.75) + 1;
-	private float moveSpeed;
+	private double moveSpeed;
 
     public EntityPenguinAfr(World par1World)
     {
         super(par1World);
         //texture = texturePath + "pengGal.png";
         setSize(0.4F, 1.3F); // width, height?
-        moveSpeed = 0.28F; // (was 0.2);
+        moveSpeed = 0.28D; // (was 0.2);
         //looksWithInterest = false;
         //tasks.addTask(1, new EntityAISwimming(this));
         tasks.addTask(2, new EntityAISwimmingPeng(this, getMoveSpeed()));
@@ -119,10 +121,12 @@ public class EntityPenguinAfr extends EntityPenguin
         return 0.4F;
     }
 
+/*  Not needed here. This function in EntityPenguin.java will set moveSpeed from this file correctly
     public void applyEntityAttributes()
     {
-        super.applyEntityAttributes(moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
+            super.applyEntityAttributes((float) moveSpeed, MAXHEALTHTAME, MAXHEALTHWILD);
     }
+*/
 
     /**
      * Returns the item ID for the item the mob drops on death.
@@ -134,8 +138,22 @@ public class EntityPenguinAfr extends EntityPenguin
 
     public boolean attackEntityAsMob(Entity par1Entity)
     {
-        byte byte0 = ((byte)(isTamed() ? 4 : 2));
-        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), byte0);
+        int i = this.isTamed() ? 4 : 2;
+        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)i);
+    }
+
+    public void setTamed(boolean par1)
+    {
+        super.setTamed(par1);
+
+        if (par1)
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(20.0D);
+        }
+        else
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(8.0D);
+        }
     }
 
     /**
@@ -189,7 +207,6 @@ public class EntityPenguinAfr extends EntityPenguin
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
-	@Override
     public boolean canMateWith(EntityAnimal par1EntityAnimal)
     {
         if (par1EntityAnimal == this)
@@ -211,7 +228,7 @@ public class EntityPenguinAfr extends EntityPenguin
         }
     }
 
-	public float getMoveSpeed() {
+	public double getMoveSpeed() {
 		return moveSpeed;
 	}
 }

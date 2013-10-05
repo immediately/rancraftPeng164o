@@ -46,10 +46,12 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     protected boolean looksWithInterest;
     protected float field_25048_b;
     protected float field_25054_c;
+    private float field_70926_e;
+    private float field_70924_f;
+    private boolean field_70928_h;
 
     /** true is the penguin is wet else false */
     protected boolean isShaking;
-    protected boolean field_25052_g;
     
     protected int GenericShearing = 1;
     
@@ -69,10 +71,31 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
         this.getNavigator().setAvoidsWater(true); // change this later?
     }
 
+/*    protected void applyEntityAttributes() // wolf version has no arguments
+    {
+        applyEntityAttributes(0.3F,20.0F,8.0F);
+    } */
+
+    // The above version without args isn't needed for penguins
+    public void applyEntityAttributes(float moveSpeed, float maxHealthTame, float maxHealthWild)
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(moveSpeed);
+
+        if (this.isTamed())
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthTame);
+        }
+        else
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthWild);
+        }
+    }
+
     /**
      * Returns true if the newer Entity AI code should be run
      */
-    protected boolean isAIEnabled()
+    public boolean isAIEnabled()
     {
         return true;
     }
@@ -152,27 +175,12 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
 
     //abstract public int getMaxHealth();
     
-    // gets overwritten by child class but can't be abstract, because child then calls it explicitly and it in turn calls its grandparent
-    public void applyEntityAttributes(float moveSpeed, float maxHealthTame, float maxHealthWild)
-    {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(moveSpeed);
-
-        if (this.isTamed())
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthTame);
-        }
-        else
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthWild);
-        }
-    }
-
     protected void entityInit()
     {
         super.entityInit();
         this.dataWatcher.addObject(18, new Float(this.getHealth()));
-        this.dataWatcher.addObject(20, new Byte((byte)BlockColored.getBlockFromDye(1)));
+        this.dataWatcher.addObject(19, new Byte((byte)0));
+        //this.dataWatcher.addObject(20, new Byte((byte)BlockColored.getBlockFromDye(1)));
     }
 
 
@@ -193,6 +201,14 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
         //return super.getTexture();
         return super.func_110581_b(textureLocation).func_110552_b();
     }*/
+
+    /**
+     * Plays step sound at given x, y, z for the entity
+     */
+    protected void playStepSound(int par1, int par2, int par3, int par4)
+    {
+        this.playSound("mob.wolf.step", 0.15F, 1.0F);
+    }
 
     /**
      * Sets the size of this mob (useful for adjusting penguin's dimensions when it swims)
@@ -218,14 +234,6 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     {
         super.readEntityFromNBT(par1NBTTagCompound);
         setAngry(par1NBTTagCompound.getBoolean("Angry"));
-    }
-
-    /**
-     * Determines if an entity can be despawned, used on idle far away entities
-     */
-    protected boolean canDespawn()
-    {
-        return isAngry();
     }
 
     /**
@@ -261,9 +269,9 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     {
         super.onLivingUpdate();
 
-        if (!worldObj.isRemote && isShaking && !field_25052_g && !hasPath() && onGround)
+        if (!worldObj.isRemote && isShaking && !field_70928_h && !hasPath() && onGround)
         {
-            field_25052_g = true;
+            field_70928_h = true;
             timePenguinIsShaking = 0.0F;
             prevTimePenguinIsShaking = 0.0F;
             worldObj.setEntityState(this, (byte)8);
@@ -276,57 +284,57 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     public void onUpdate()
     {
         super.onUpdate();
-        field_25054_c = field_25048_b;
+        this.field_70924_f = this.field_70926_e;
 
-        if (looksWithInterest)
+        if (this.func_70922_bv())
         {
-            field_25048_b = field_25048_b + (1.0F - field_25048_b) * 0.4F;
+            this.field_70926_e += (1.0F - this.field_70926_e) * 0.4F;
         }
         else
         {
-            field_25048_b = field_25048_b + (0.0F - field_25048_b) * 0.4F;
+            this.field_70926_e += (0.0F - this.field_70926_e) * 0.4F;
         }
 
-        if (looksWithInterest)
+        if (this.func_70922_bv())
         {
-            numTicksToChaseTarget = 10;
+            this.numTicksToChaseTarget = 10;
         }
 
-        if (isWet())
+        if (this.isWet())
         {
-            isShaking = true;
-            field_25052_g = false;
-            timePenguinIsShaking = 0.0F;
-            prevTimePenguinIsShaking = 0.0F;
+            this.isShaking = true;
+            this.field_70928_h = false;
+            this.timePenguinIsShaking = 0.0F;
+            this.prevTimePenguinIsShaking = 0.0F;
         }
-        else if ((isShaking || field_25052_g) && field_25052_g)
+        else if ((this.isShaking || this.field_70928_h) && this.field_70928_h)
         {
-            if (timePenguinIsShaking == 0.0F)
+            if (this.timePenguinIsShaking == 0.0F)
             {
-                worldObj.playSoundAtEntity(this, "mob.wolf.shake", getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+                this.playSound("mob.wolf.shake", this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             }
 
-            prevTimePenguinIsShaking = timePenguinIsShaking;
-            timePenguinIsShaking += 0.05F;
+            this.prevTimePenguinIsShaking = this.timePenguinIsShaking;
+            this.timePenguinIsShaking += 0.05F;
 
-            if (prevTimePenguinIsShaking >= 2.0F)
+            if (this.prevTimePenguinIsShaking >= 2.0F)
             {
-                isShaking = false;
-                field_25052_g = false;
-                prevTimePenguinIsShaking = 0.0F;
-                timePenguinIsShaking = 0.0F;
+                this.isShaking = false;
+                this.field_70928_h = false;
+                this.prevTimePenguinIsShaking = 0.0F;
+                this.timePenguinIsShaking = 0.0F;
             }
 
-            if (timePenguinIsShaking > 0.4F)
+            if (this.timePenguinIsShaking > 0.4F)
             {
-                float f = (float)boundingBox.minY;
-                int i = (int)(MathHelper.sin((timePenguinIsShaking - 0.4F) * (float)Math.PI) * 7F);
+                float f = (float)this.boundingBox.minY;
+                int i = (int)(MathHelper.sin((this.timePenguinIsShaking - 0.4F) * (float)Math.PI) * 7.0F);
 
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < i; ++j)
                 {
-                    float f1 = (rand.nextFloat() * 2.0F - 1.0F) * width * 0.5F;
-                    float f2 = (rand.nextFloat() * 2.0F - 1.0F) * width * 0.5F;
-                    worldObj.spawnParticle("splash", posX + (double)f1, f + 0.8F, posZ + (double)f2, motionX, motionY, motionZ);
+                    float f1 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
+                    float f2 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
+                    this.worldObj.spawnParticle("splash", this.posX + (double)f1, (double)(f + 0.8F), this.posZ + (double)f2, this.motionX, this.motionY, this.motionZ);
                 }
             }
         }
@@ -367,7 +375,7 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     @SideOnly(Side.CLIENT)
     public float getInterestedAngle(float par1)
     {
-        return (field_25054_c + (field_25048_b - field_25054_c) * par1) * 0.15F * (float)Math.PI;
+        return (this.field_70924_f + (this.field_70926_e - this.field_70924_f) * par1) * 0.15F * (float)Math.PI;
     }
 
     public float getEyeHeight()
@@ -381,20 +389,13 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
      */
     public int getVerticalFaceSpeed()
     {
-        if (isSitting())
-        {
-            return 20;
-        }
-        else
-        {
-            return super.getVerticalFaceSpeed();
-        }
+        return this.isSitting() ? 20 : super.getVerticalFaceSpeed();
     }
 
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
+    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
         Entity entity = par1DamageSource.getEntity();
         aiSit.setSitting(false);
@@ -497,7 +498,7 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
 		                    setPathToEntity(null);
 		                    setAttackTarget(null);
 		                    this.aiSit.setSitting(true);
-		                    //setEntityHealth(20.0F);
+		                    setHealth(20.0F);
 		                    setOwner(par1EntityPlayer.username);
 		                    this.playTameEffect(true);
 		                    this.worldObj.setEntityState(this, (byte)7);
@@ -555,7 +556,7 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
     {
         if (par1 == 8)
         {
-            field_25052_g = true;
+            field_70928_h = true;
             timePenguinIsShaking = 0.0F;
             prevTimePenguinIsShaking = 0.0F;
         }
@@ -583,15 +584,15 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
      */
     public void setAngry(boolean par1)
     {
-        byte byte0 = dataWatcher.getWatchableObjectByte(16);
+        byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
-            dataWatcher.updateObject(16, Byte.valueOf((byte)(byte0 | 2)));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
         }
         else
         {
-            dataWatcher.updateObject(16, Byte.valueOf((byte)(byte0 & -3)));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
         }
     }
 
@@ -605,9 +606,33 @@ public abstract class EntityPenguin extends net.minecraft.entity.passive.EntityT
         looksWithInterest = par1;
     }
 
+    public void func_70918_i(boolean par1)
+    {
+        if (par1)
+        {
+            this.dataWatcher.updateObject(19, Byte.valueOf((byte)1));
+        }
+        else
+        {
+            this.dataWatcher.updateObject(19, Byte.valueOf((byte)0));
+        }
+    }
+
     abstract public boolean canMateWith(EntityAnimal par1EntityAnimal);
 
-    @Override
+    public boolean func_70922_bv()
+    {
+        return this.dataWatcher.getWatchableObjectByte(19) == 1;
+    }
+
+    /**
+     * Determines if an entity can be despawned, used on idle far away entities
+     */
+    protected boolean canDespawn()
+    {
+        return !this.isTamed() && this.ticksExisted > 2400;
+    }
+
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
     {
         return this.spawnBabyAnimal(par1EntityAgeable);

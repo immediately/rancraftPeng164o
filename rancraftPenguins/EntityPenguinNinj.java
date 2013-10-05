@@ -71,13 +71,23 @@ public class EntityPenguinNinj extends EntityMob implements IRangedAttackMob
         return true;
     }
 
-    public void applyEntityAttributes()
+    // This is the only version that's needed for penguins (don't need the one with no args, unlike wolves)
+    public void applyEntityAttributes(float moveSpeed, float maxHealthTame, float maxHealthWild)
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(moveSpeed);
+
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthWild);
+    }
+
+/*    public void applyEntityAttributes() // wolf version has no args
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(moveSpeed);
 
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(MAXHEALTHWILD);
     }
+*/
 
     /**
      * Sets the size of this mob (useful for adjusting penguin's dimensions when it swims)
@@ -157,15 +167,6 @@ public class EntityPenguinNinj extends EntityMob implements IRangedAttackMob
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-    }
-
-    // gets overwritten by child class but can't be abstract, because child then calls it explicitly and it in turn calls its grandparent
-    public void applyEntityAttributes(float moveSpeed, float maxHealthTame, float maxHealthWild)
-    {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(moveSpeed);
-
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(maxHealthWild);
     }
 
     /**
