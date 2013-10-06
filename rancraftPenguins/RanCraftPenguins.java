@@ -744,8 +744,8 @@ public class RanCraftPenguins {
 				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
 				PengFeatherStriped);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatHum), "XYZ", "Z X",
-				Character.valueOf('X'), PengFeatherBlack,
-				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
+				Character.valueOf('X'), PengFeatherBrown,
+				Character.valueOf('Y'), PengSkinBrown, Character.valueOf('Z'),
 				PengFeatherWhite);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatCS), "XYX", "Z Z",
 				Character.valueOf('X'), PengFeatherStriped,
