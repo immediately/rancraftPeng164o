@@ -155,9 +155,7 @@ public class EntityPenguinWF extends EntityPenguin
     {
     	Item dropped;
     	int i = rand.nextInt(10);
-		if(i > 5){ // 40% brown striped, 30% brown, 30% white
-			dropped = RanCraftPenguins.PengFeatherBrownStriped;
-		} else if(i > 2){
+		if(i > 7){ // 70% brown, 30% white
 			dropped = RanCraftPenguins.PengFeatherBrown;
 		} else {
 			dropped = RanCraftPenguins.PengFeatherWhite;

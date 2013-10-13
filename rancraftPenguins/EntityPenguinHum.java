@@ -150,7 +150,7 @@ public class EntityPenguinHum extends EntityPenguin
         int k = MathHelper.floor_double(posZ);
         return worldObj.getFullBlockLightValue(i, j, k) > 8 && super.getCanSpawnHere();
     }
-    
+
     public Item droppedFeather()
     {
     	Item dropped;

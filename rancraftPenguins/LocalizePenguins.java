@@ -96,7 +96,7 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "pl_PL", "Pingwin białobrewy");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "zh_TW", "巴布亞企鵝");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "zh_HK", "巴布亞企鵝");
-        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "ru_RU", "папуанский пингвин");
+        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "ru_RU", "Папуанский пингвин");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".GentooPenguin.name", "ja_JP", "ジェンツーペンギン");
 
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "en_US", "Chinstrap Penguin");
@@ -105,7 +105,7 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "pl_PL", "Pingwin maskowy");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "zh_TW", "南極企鵝");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "zh_HK", "南極企鵝");
-        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "ru_RU", "антарктический пингвин");
+        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "ru_RU", "Антарктический пингвин");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CSPenguin.name", "ja_JP", "ヒゲペンギン");
         
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".AfricanPenguin.name", "en_US", "African Penguin");
@@ -133,7 +133,7 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "pl_PL", "Chmura pingwin");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "zh_TW", "雲企鵝");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "zh_HK", "雲企鵝");
-        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "ru_RU", "облачный пингвин");
+        LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "ru_RU", "Облачный пингвин");
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".CloudPenguin.name", "ja_JP", "雲ペンギン");
 
         LanguageRegistry.instance().addStringLocalization("entity." + RanCraftPenguins.modID + ".FlamePenguin.name", "en_US", "Flame Penguin");
@@ -173,7 +173,7 @@ public class LocalizePenguins
         
         LanguageRegistry.instance().addStringLocalization("item.PDCL.name", "zh_TW", "云企鹅羽毛");
         LanguageRegistry.instance().addStringLocalization("item.PDCL.name", "zh_HK", "云企鹅羽毛");
-        LanguageRegistry.instance().addStringLocalization("item.PDCL.name", "ru_RU", "оперенье облачных пингвинов");
+        LanguageRegistry.instance().addStringLocalization("item.PDCL.name", "ru_RU", "Оперенье облачных пингвинов");
         LanguageRegistry.instance().addStringLocalization("item.PFBLK.name", "zh_TW", "黑企鵝羽毛");
         LanguageRegistry.instance().addStringLocalization("item.PFBLK.name", "zh_HK", "黑企鵝羽毛");
         LanguageRegistry.instance().addStringLocalization("item.PFBLK.name", "ru_RU", "Чёрное перо пингвина");
@@ -194,7 +194,7 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("item.PFBLU.name", "ru_RU", "Синее перо пингвина");
         LanguageRegistry.instance().addStringLocalization("item.PFBRST.name", "zh_TW", "棕白條紋羽毛");
         LanguageRegistry.instance().addStringLocalization("item.PFBRST.name", "zh_HK", "棕白條紋羽毛");
-        LanguageRegistry.instance().addStringLocalization("item.PFBRST.name", "ru_RU", " Полосатое коричневое перо пингвина");
+        LanguageRegistry.instance().addStringLocalization("item.PFBRST.name", "ru_RU", "Полосатое коричневое перо пингвина");
         LanguageRegistry.instance().addStringLocalization("item.PSCR.name", "zh_TW", "火焰企鵝鱗片");
         LanguageRegistry.instance().addStringLocalization("item.PSCR.name", "zh_HK", "火焰企鵝鱗片");
         LanguageRegistry.instance().addStringLocalization("item.PSCR.name", "ru_RU", "Красная чешуя пингвина");
@@ -218,6 +218,9 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("item.MF.name", "zh_TW", "岩漿魚");
         LanguageRegistry.instance().addStringLocalization("item.MF.name", "zh_HK", "岩漿魚");
         LanguageRegistry.instance().addStringLocalization("item.MF.name", "ru_RU", "Огненная рыба");
+        LanguageRegistry.instance().addStringLocalization("item.PSC.name", "zh_TW", "企鵝醬");
+        LanguageRegistry.instance().addStringLocalization("item.PSC.name", "zh_HK", "企鵝醬");
+        LanguageRegistry.instance().addStringLocalization("item.PSC.name", "ru_RU", "Пингвин соусом");
         LanguageRegistry.instance().addStringLocalization("item.PCR.name", "zh_TW", "企鵝皇冠");
         LanguageRegistry.instance().addStringLocalization("item.PCR.name", "zh_HK", "企鵝皇冠");
         LanguageRegistry.instance().addStringLocalization("item.PCR.name", "ru_RU", "Корона пингвинов");
@@ -258,12 +261,18 @@ public class LocalizePenguins
         LanguageRegistry.instance().addStringLocalization("item.LBPH.name", "zh_TW", "小藍企鵝帽");
         LanguageRegistry.instance().addStringLocalization("item.LBPH.name", "zh_HK", "小藍企鵝帽");
         LanguageRegistry.instance().addStringLocalization("item.LBPH.name", "ru_RU", "Шляпа маленького синего пингвина");
-        LanguageRegistry.instance().addStringLocalization("item.GPH.name", "zh_TW", "巴布亞企鵝帽");
-        LanguageRegistry.instance().addStringLocalization("item.GPH.name", "zh_HK", "巴布亞企鵝帽");
-        LanguageRegistry.instance().addStringLocalization("item.GPH.name", "ru_RU", "Шляпа папуанского пингвина");
+        LanguageRegistry.instance().addStringLocalization("item.GTPH.name", "zh_TW", "巴布亞企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.GTPH.name", "zh_HK", "巴布亞企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.GTPH.name", "ru_RU", "Шляпа папуанского пингвина");
         LanguageRegistry.instance().addStringLocalization("item.CSPH.name", "zh_TW", "南極企鵝帽");
         LanguageRegistry.instance().addStringLocalization("item.CSPH.name", "zh_HK", "南極企鵝帽");
         LanguageRegistry.instance().addStringLocalization("item.CSPH.name", "ru_RU", "Шляпа антарктического пингвина");
+        LanguageRegistry.instance().addStringLocalization("item.AFPH.name", "zh_TW", "黑腳企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.AFPH.name", "zh_HK", "黑腳企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.AFPH.name", "ru_RU", "Шляпа очковый пингвин");
+        LanguageRegistry.instance().addStringLocalization("item.HPH.name", "zh_TW", "漢波德企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.HPH.name", "zh_HK", "漢波德企鵝帽");
+        LanguageRegistry.instance().addStringLocalization("item.HPH.name", "ru_RU", "Шляпа пингвин гумбольдта");
         
         LanguageRegistry.instance().addStringLocalization("item.FPF.name", "zh_TW", "火焰企鵝靴");
         LanguageRegistry.instance().addStringLocalization("item.FPF.name", "zh_HK", "火焰企鵝靴");

@@ -39,7 +39,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "rancraftpenguins", name = "Rancraft Penguins", version = "1.6.4o")
+@Mod(modid = "rancraftpenguins", name = "Rancraft Penguins", version = "1.6.4o2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {
 		"RanCraftExt", "RanCraftAL", "RanCraftFD", "RanCraftFRS", "RanCraftFRSR" }, packetHandler = RCPacketHandler.class)
 public class RanCraftPenguins {
@@ -581,7 +581,7 @@ public class RanCraftPenguins {
 				"White-FlipperedPenguin", pengWFID, this, 80, 3, false);
 		EntityList.IDtoClassMapping.put(pengWFID, EntityPenguinWF.class);
 		EntityList.entityEggs.put(pengWFID, new EntityEggInfo(pengWFID,
-				0x555555, 0));
+				0x999999, 0x663333));
 
 		// adélie
 		int pengAdelID = 6; // ModLoader.getUniqueEntityId();
@@ -730,8 +730,8 @@ public class RanCraftPenguins {
 				PengFeatherBrownStriped);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatWF), "XYX", "Z Z",
 				Character.valueOf('X'), PengFeatherBrown,
-				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
-				PengFeatherBrownStriped);
+				Character.valueOf('Y'), PengSkinBrown, Character.valueOf('Z'),
+				PengFeatherWhite);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatAdel), "XYX", "X X",
 				Character.valueOf('X'), PengFeatherBlack,
 				Character.valueOf('Y'), PengSkinBlack);
@@ -740,13 +740,13 @@ public class RanCraftPenguins {
 				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
 				PengFeatherBlack);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatAfr), "XYZ", "Z X",
-				Character.valueOf('X'), PengFeatherBlack,
+				Character.valueOf('X'), PengFeatherStriped,
 				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
-				PengFeatherStriped);
-		GameRegistry.addRecipe(new ItemStack(PenguinHatHum), "XYZ", "Z X",
-				Character.valueOf('X'), PengFeatherBrown,
-				Character.valueOf('Y'), PengSkinBrown, Character.valueOf('Z'),
 				PengFeatherWhite);
+		GameRegistry.addRecipe(new ItemStack(PenguinHatHum), "XYZ", "Z X",
+				Character.valueOf('X'), PengFeatherWhite,
+				Character.valueOf('Y'), PengSkinBrown, Character.valueOf('Z'),
+				PengFeatherBrownStriped);
 		GameRegistry.addRecipe(new ItemStack(PenguinHatCS), "XYX", "Z Z",
 				Character.valueOf('X'), PengFeatherStriped,
 				Character.valueOf('Y'), PengSkinBlack, Character.valueOf('Z'),
